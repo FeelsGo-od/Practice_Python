@@ -1,0 +1,34 @@
+--- 1. 
+#Fetch Exchange Rates: 
+Make a request 
+to the Free Currency API to get the latest 
+exchange rates for different currencies.
+
+
+--- 2. 
+#Parse the Response: 
+Once received 
+the response from the API, parse the 
+JSON data to extract the exchange rates.
+
+
+--- 3. 
+#User Input: 
+Prompt the user to enter the 
+amount they want to convert, the currency 
+they're converting from, and the currency 
+they're converting to.
+
+
+--- 3. 
+#Perform Conversion: 
+Using fetched exchange 
+rates, calculate 
+the converted \ amount based on 
+the user's input.
+
+
+--- 4. 
+#Display Result: 
+Display the 
+converted amount to the user.
