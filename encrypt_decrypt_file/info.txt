@@ -1,0 +1,14 @@
+1. Install the cryptography library:
+pip install cryptography
+
+2. Generate a Symmetric Key:
+Use the Fernet class from the cryptography.fernet module to generate a secure symmetric key. This key will be used for both encryption and decryption.
+
+3. Encrypting Files:
+Read plaintext data from a file, encrypt it using AES with the generated key, and write the encrypted data to another file.
+
+4. Decrypting Files:
+Read the encrypted data from a file, decrypt it using AES with the same key used for encryption, and write the decrypted data to a new file.
+
+5. Use:
+Use the encrypt_file and decrypt_file functions to encrypt and decrypt files.
