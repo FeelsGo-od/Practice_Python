@@ -1,0 +1,48 @@
+#### Project: Shape Hierarchy with Abstract Classes
+
+
+#### Description:
+Create a hierarchy of geometric shapes using 
+abstract classes in Python. This project will 
+help to understand abstract classes, inheritance, 
+and polymorphism.
+
+
+#### Features:
+- Abstract Class: Create an abstract class called Shape 
+that defines the basic properties and methods common 
+to all shapes, such as area() and perimeter(). 
+These methods should raise NotImplementedError since 
+each subclass will implement them differently.
+
+- Concrete Subclasses: Create concrete subclasses of 
+Shape for specific shapes like Circle, Rectangle, and 
+Triangle. Each subclass should implement its own version
+of the area() and perimeter() methods.
+
+- Polymorphism: Write a function that accepts a list of 
+shapes (instances of Shape or its subclasses) and 
+calculates the total area and perimeter of all shapes 
+in the list. This demonstrates polymorphism, where 
+different objects can be treated interchangeably.
+
+- User Interaction: Implement a simple command-line 
+interface where users can create instances of different 
+shapes, specify their dimensions, and see the 
+calculated area and perimeter.
+
+- Error Handling: Implement error handling to handle 
+invalid inputs, such as negative dimensions for shapes.
+
+
+
+#### Additional Challenges (Optional):
+- Implement additional geometric shapes like squares, pentagons, 
+or hexagons as subclasses of Shape.
+
+- Extend the command-line interface to allow users to perform operations 
+like comparing the areas of two shapes or sorting a list of shapes based 
+on their areas.
+
+- Explore advanced concepts like method overriding and method overloading 
+in the context of abstract classes and subclasses.
