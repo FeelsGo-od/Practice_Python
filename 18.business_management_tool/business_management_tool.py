@@ -191,34 +191,22 @@ save_project_data_to_file(
 
 
 """
-### common_elements = set(self.projects[next(iter(self.projects))]) ###
-- iter(self.projects): This part creates an iterator object for the 
-dictionary self.projects. iter() returns an iterator object, 
-which can be used to traverse through all the keys of the dictionary.
-- next(iter(self.projects)): This retrieves the first key from the iterator. 
-Since dictionaries in Python are unordered, there's no guarantee which key 
-will be returned first. However, in practice, it usually returns the 
-first key in the dictionary's insertion order.
-- self.projects[next(iter(self.projects))]: This accesses the value 
-associated with the first key in self.projects. It's equivalent to 
-self.projects[key], where key is the first key obtained from the dictionary.
-set(...): Finally, the set() function is used to convert the value 
-associated with the first key into a set. This is done to perform set 
-operations like intersection_update() later in the code.
+## Dictionary Iteration:
+- `iter(self.projects)`: Creates an iterator object for the dictionary `self.projects`, allowing traversal through its keys.
+- `next(iter(self.projects))`: Retrieves the first key from the iterator. In dictionaries, insertion order is not guaranteed, but this typically returns the first key.
+- `self.projects[next(iter(self.projects))]`: Accesses the value associated with the first key in `self.projects`.
+- `set(...)`: Converts the value associated with the first key into a set for set operations like `intersection_update()`.
 
----------------------------------------------------------------------
+## Logging Configuration:
+- `logging.basicConfig()`: Configures the logging system, typically called once at the beginning of the program.
+- `level=logging.INFO`: Sets the logging level to INFO, processing only messages with severity INFO or higher.
+- `format='%(asctime)s - %(levelname)s - %(message)s'`: Specifies the format of log messages using placeholders for time, log level, and message.
 
-### Logging Configuration: ###
-- logging.basicConfig(): This is a method provided by the logging module 
-that configures the logging system. It needs to be called only once at the 
-beginning of the program.
-- level=logging.INFO: This sets the logging level to INFO, meaning only 
-log messages with a severity level of INFO or higher will be processed.
-- format='%(asctime)s - %(levelname)s - %(message)s': This specifies the 
-format of log messages. It consists of placeholders enclosed in %() which 
-will be replaced with actual values when logging. Here's what each 
-placeholder means:
-    * %(asctime)s: The time of the log message in a human-readable format.
-    * %(levelname)s: The log level (e.g., INFO, ERROR).
-    * %(message)s: The actual log message.
+## Accessing Function Names:
+- `func.__name__`: Accesses the name of the function being decorated (`func`), used to construct log messages indicating the executed method.
+
+## *args and **kwargs:
+- `*args`: Captures variable positional arguments passed to a function.
+- `**kwargs`: Captures variable keyword arguments passed to a function.
+- In decorators, `*args` and `**kwargs` allow accepting any number of arguments without explicitly specifying them.
 """
