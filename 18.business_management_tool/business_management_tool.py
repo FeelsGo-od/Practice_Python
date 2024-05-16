@@ -49,7 +49,7 @@ class ProjectDataFile:
 # Example usage of decorators, generators, and context managers
 class BudgetManager:
     @log_method
-    def calc_topdown(self):
+    def calc_topdown(self, project_id):
         try:
             logging.info("Calculating top-down budget...")
             total_budget = float(input("Enter the total budget for the project: "))
@@ -69,15 +69,17 @@ class BudgetManager:
             marketing_budget = round(marketing_budget, 2)
 
             return {
-                "Salaries": salaries_budget,
-                "Materials": materials_budget,
-                "Marketing": marketing_budget,
+                project_id: {
+                    "Salaries": salaries_budget,
+                    "Materials": materials_budget,
+                    "Marketing": marketing_budget,
+                }
             }
         except ValueError:
             raise InvalidInputException("Invalid input: Total budget must be a number.")
 
     @log_method
-    def calc_bottomup(self):
+    def calc_bottomup(self, project_id):
         try:
             logging.info("Calculating bottom-up budget...")
             # Inititalize variables to hold total budget and expenses for each category
@@ -102,7 +104,7 @@ class BudgetManager:
             # Calculate total budget by summing up the expenses
             total_budget = salaries_expense + materials_expense + marketing_expense
 
-            return total_budget
+            return {project_id: total_budget}
         except ValueError:
             raise InvalidInputException("Invalid input: Expenses must be numbers.")
 
@@ -166,21 +168,30 @@ def print_project_reports(projects):
 
 
 # Usage of context manager for file handling
-def save_project_data_to_file(projects, filename):
-    with ProjectDataFile(filename, "w") as file:
-        for project_id, project_data in projects.items():
-            file.write(f"{project_id}: {project_data}\n")
+def save_project_data_to_file(project_data, filename):
+    with ProjectDataFile(filename, "a") as file:
+        file.write(f"{project_data}\n")
 
 
 budget_manager = BudgetManager()
-topdown_budget = budget_manager.calc_topdown()
+project_id = input("Enter project name(or ID): ")
+
+topdown_budget = budget_manager.calc_topdown(project_id)
 print("Top-Down Budget:", topdown_budget)
 
-bottomup_budget = budget_manager.calc_bottomup()
+bottomup_budget = budget_manager.calc_bottomup(project_id)
 print("Bottom-Up Budget:", bottomup_budget)
 
+print_project_reports(topdown_budget)
+
+save_project_data_to_file(
+    topdown_budget,
+    r"C:\Users\PC\Desktop\Practice Python\18.business_management_tool\project_data.txt",
+)
+
+
 """
-* common_elements = set(self.projects[next(iter(self.projects))]) *
+### common_elements = set(self.projects[next(iter(self.projects))]) ###
 - iter(self.projects): This part creates an iterator object for the 
 dictionary self.projects. iter() returns an iterator object, 
 which can be used to traverse through all the keys of the dictionary.
@@ -194,4 +205,20 @@ self.projects[key], where key is the first key obtained from the dictionary.
 set(...): Finally, the set() function is used to convert the value 
 associated with the first key into a set. This is done to perform set 
 operations like intersection_update() later in the code.
+
+---------------------------------------------------------------------
+
+### Logging Configuration: ###
+- logging.basicConfig(): This is a method provided by the logging module 
+that configures the logging system. It needs to be called only once at the 
+beginning of the program.
+- level=logging.INFO: This sets the logging level to INFO, meaning only 
+log messages with a severity level of INFO or higher will be processed.
+- format='%(asctime)s - %(levelname)s - %(message)s': This specifies the 
+format of log messages. It consists of placeholders enclosed in %() which 
+will be replaced with actual values when logging. Here's what each 
+placeholder means:
+    * %(asctime)s: The time of the log message in a human-readable format.
+    * %(levelname)s: The log level (e.g., INFO, ERROR).
+    * %(message)s: The actual log message.
 """
